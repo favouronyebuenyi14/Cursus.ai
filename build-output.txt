@@ -1,0 +1,73 @@
+﻿
+> cursus@0.1.0 build
+> next build
+
+  Γû▓ Next.js 14.2.13
+  - Environments: .env.local
+
+   Creating an optimized production build ...
+> [PWA] Compile server
+> [PWA] Compile server
+> [PWA] Compile client (static)
+> [PWA] Auto register service worker with: C:\Users\USER-PC\Desktop\Cursus\node_modules\next-pwa\register.js
+> [PWA] Service worker: C:\Users\USER-PC\Desktop\Cursus\public\sw.js
+> [PWA]   url: /sw.js
+> [PWA]   scope: /
+node.exe : <w> 
+[webpack.cache.PackFileCacheStrategy] 
+Serializing big strings (140kiB) impacts 
+deserialization performance (consider 
+using Buffer instead and decode when 
+needed)
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" 
+"C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecifie 
+   d: (<w> [webpack.ca...de when needed)  
+  :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeComma 
+   ndError
+ 
+ Γ£ô Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/19) ...
+   Generating static pages (4/19) 
+   Generating static pages (9/19) 
+   Generating static pages (14/19) 
+ Γ£ô Generating static pages (19/19)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+Γöî Γùï /                                    5.89 kB         136 kB
+Γö£ Γùï /_not-found                          871 B          88.2 kB
+Γö£ ╞Æ /api/ai/exam-prep                    0 B                0 B
+Γö£ ╞Æ /api/ai/expand-notes                 0 B                0 B
+Γö£ ╞Æ /api/ai/pdf-chat                     0 B                0 B
+Γö£ ╞Æ /api/ai/snap-ask                     0 B                0 B
+Γö£ ╞Æ /api/auth/send-otp                   0 B                0 B
+Γö£ ╞Æ /api/auth/verify-otp                 0 B                0 B
+Γö£ ╞Æ /api/waitlist                        0 B                0 B
+Γö£ ╞Æ /auth/callback                       0 B                0 B
+Γö£ Γùï /dashboard                           4.77 kB         189 kB
+Γö£ Γùï /auth/login                               2.36 kB         187 kB
+Γö£ Γùï /notes                               3.83 kB         182 kB
+Γö£ ╞Æ /notes/[id]                          3.37 kB         188 kB
+Γö£ Γùï /onboarding                          4.14 kB         182 kB
+Γö£ Γùï /auth/signup                              5.03 kB         190 kB
+Γö£ Γùï /snap                                5.25 kB         147 kB
+Γöö Γùï /verify                              3.19 kB         133 kB
++ First Load JS shared by all            87.4 kB
+  Γö£ chunks/23-18536b380674086c.js        31.6 kB
+  Γö£ chunks/fd9d1056-199cba9879f49bf4.js  53.6 kB
+  Γöö other shared chunks (total)          2.14 kB
+
+
+╞Æ Middleware                             74.3 kB
+
+Γùï  (Static)   prerendered as static content
+╞Æ  (Dynamic)  server-rendered on demand
+
