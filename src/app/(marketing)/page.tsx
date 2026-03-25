@@ -208,7 +208,7 @@ export default function MarketingPage() {
                     Basic note writing
                   </li>
                 </ul>
-                <Link href="/auth/signup" className="w-full py-4 rounded-lg border border-slate-200 hover:bg-slate-50 text-primary font-bold transition-all">Get started</Link>
+                <Link href="/signup" className="w-full py-4 rounded-lg border border-slate-200 hover:bg-slate-50 text-primary font-bold transition-all">Get started</Link>
               </div>
               {/* Pro Tier */}
               <div className="relative bg-white border border-slate-200 rounded-xl shadow-sm p-10 flex flex-col ring-2 ring-primary/5 shadow-2xl shadow-slate-200">
@@ -237,7 +237,7 @@ export default function MarketingPage() {
                     Research &amp; essay studio
                   </li>
                 </ul>
-                <Link href="/auth/signup" className="w-full py-4 rounded-lg bg-primary text-white font-bold transition-all hover:opacity-90 shadow-lg active:scale-[0.98]">Upgrade to Pro</Link>
+                <Link href="/signup" className="w-full py-4 rounded-lg bg-primary text-white font-bold transition-all hover:opacity-90 shadow-lg active:scale-[0.98]">Upgrade to Pro</Link>
               </div>
             </div>
           </div>
@@ -345,7 +345,7 @@ export default function MarketingPage() {
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
             <h2 className="text-3xl md:text-5xl font-extrabold text-primary mb-8 relative z-10 leading-tight tracking-tight">Your grades don't have to depend on luck.</h2>
             <p className="text-slate-600 mb-12 text-lg max-w-2xl mx-auto relative z-10 leading-relaxed">Join thousands of Nigerian students already studying smarter with the world's first localized academic AI.</p>
-            <Link href="/auth/signup" className="px-12 py-5 bg-primary text-white rounded-lg font-black text-xl hover:opacity-90 active:scale-[0.98] transition-all relative z-10 shadow-xl">Get started free</Link>
+            <Link href="/signup" className="px-12 py-5 bg-primary text-white rounded-lg font-black text-xl hover:opacity-90 active:scale-[0.98] transition-all relative z-10 shadow-xl">Get started free</Link>
           </div>
         </section>
       </main>

@@ -143,7 +143,7 @@ function VerifyForm() {
             <Link href="/" className="text-2xl font-bold"><span className="text-teal-400">C</span>ursus</Link>
           </div>
           <div className="glass-card p-8">
-            <Link href="/auth/signup" className="flex items-center gap-1 text-white/40 text-sm hover:text-white/60 mb-6 transition-colors">
+            <Link href="/signup" className="flex items-center gap-1 text-white/40 text-sm hover:text-white/60 mb-6 transition-colors">
               <ArrowLeft size={14} /> Back
             </Link>
             <h1 className="text-2xl font-bold mb-2">Check your {method === 'email' ? 'inbox' : 'messages'}</h1>

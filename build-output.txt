@@ -57,7 +57,7 @@ Route (app)                              Size     First Load JS
 Γö£ Γùï /notes                               3.83 kB         182 kB
 Γö£ ╞Æ /notes/[id]                          3.37 kB         188 kB
 Γö£ Γùï /onboarding                          4.14 kB         182 kB
-Γö£ Γùï /auth/signup                              5.03 kB         190 kB
+Γö£ Γùï /signup                              5.03 kB         190 kB
 Γö£ Γùï /snap                                5.25 kB         147 kB
 Γöö Γùï /verify                              3.19 kB         133 kB
 + First Load JS shared by all            87.4 kB
