@@ -64,10 +64,10 @@ export default function MarketingPage() {
           <div className="max-w-5xl mx-auto text-center relative z-10">
             <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 mb-8 backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-600">Crafting the Future of Nigerian Education</span>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-600">Refining the Academic Experience of Nigerian Students</span>
             </div>
             <h1 className="text-5xl md:text-7xl font-extrabold text-primary mb-6 leading-[1.1] tracking-tight">
-              Master Your <br/><span className="text-slate-400">Academic Journey</span>
+              Your Academic <br/><span className="text-slate-400">Intelligence Atelier</span>
             </h1>
             <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
               The all-in-one AI workspace designed specifically for the unique challenges of Nigerian university students. Notes, exams, and research in one sanctuary.
@@ -179,7 +179,7 @@ export default function MarketingPage() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-5xl font-extrabold text-primary mb-4 tracking-tight">Simple, honest pricing.</h2>
-              <p className="text-slate-500 text-lg">Built for Nigerian students. Priced accordingly.</p>
+              <p className="text-slate-500 text-lg">Built for students. Priced accordingly.</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {/* Free Tier */}
@@ -197,14 +197,14 @@ export default function MarketingPage() {
                   </li>
                   <li className="flex items-center text-sm">
                     <CheckCircle className="text-slate-300 mr-3" size={18} />
-                    1 PDF upload per day
+                    Up to 5 PDF uploads per day
                   </li>
                   <li className="flex items-center text-sm">
                     <CheckCircle className="text-slate-300 mr-3" size={18} />
-                    Record up to 20 minutes
+                    Record up to 2 hours of lectures per day
                   </li>
-                  <li className="flex items-center text-sm text-slate-400">
-                    <CheckCircle className="text-slate-200 mr-3" size={18} />
+                  <li className="flex items-center text-sm">
+                    <CheckCircle className="text-slate-300 mr-3" size={18} />
                     Basic note writing
                   </li>
                 </ul>
@@ -215,10 +215,10 @@ export default function MarketingPage() {
                 <div className="absolute top-0 right-10 -translate-y-1/2 bg-primary text-white text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">Most Popular</div>
                 <h3 className="text-xl font-bold text-primary mb-2">Cursus Pro</h3>
                 <div className="flex items-baseline mb-2">
-                  <span className="text-4xl font-black text-primary">₦800</span>
+                  <span className="text-4xl font-black text-primary">₦1500</span>
                   <span className="text-slate-400 ml-2">/month</span>
                 </div>
-                <p className="text-[10px] text-slate-500 mb-10 italic uppercase tracking-wider">or ₦6,000/year — Save ₦3,600</p>
+                <p className="text-[10px] text-slate-500 mb-10 italic uppercase tracking-wider">or ₦15,000/year — Save ₦3,600</p>
                 <ul className="space-y-5 mb-12 flex-grow">
                   <li className="flex items-center text-sm">
                     <Star className="text-primary mr-3" size={18} />
@@ -381,7 +381,7 @@ export default function MarketingPage() {
           </div>
         </div>
         <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-slate-100 text-center">
-          <p className="text-slate-400 text-[10px] uppercase tracking-[0.2em]">© 2024 Cursus AI Academic Workspace. All rights reserved.</p>
+          <p className="text-slate-400 text-[10px] uppercase tracking-[0.2em]">© 2026 Cursus AI Academic Workspace. All rights reserved.</p>
         </div>
       </footer>
     </>
