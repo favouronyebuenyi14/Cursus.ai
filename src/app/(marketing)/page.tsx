@@ -73,7 +73,7 @@ export default function MarketingPage() {
               The all-in-one AI workspace designed specifically for the unique challenges of Nigerian university students. Notes, exams, and research in one sanctuary.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/(auth)/auth/signup" className="w-full sm:w-auto px-10 py-4 bg-primary text-white rounded-lg font-bold text-lg hover:opacity-90 transition-all shadow-xl shadow-slate-200 flex items-center justify-center gap-2">
+              <Link href="/signup" className="w-full sm:w-auto px-10 py-4 bg-primary text-white rounded-lg font-bold text-lg hover:opacity-90 transition-all shadow-xl shadow-slate-200 flex items-center justify-center gap-2">
                 Get started free
                 <ArrowRight size={20} />
               </Link>
