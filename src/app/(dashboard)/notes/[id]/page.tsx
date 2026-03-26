@@ -44,7 +44,7 @@ export default function NoteEditorPage() {
       if (profRes.data) setProfile(profRes.data as Profile)
     }
     load()
-  }, [id])
+  }, [id, supabase])
 
   // Auto-save after 2s of inactivity
   useEffect(() => {
@@ -140,7 +140,7 @@ export default function NoteEditorPage() {
             className={`flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg font-medium transition-colors ${
               profile?.is_pro
                 ? 'bg-teal-400/10 text-teal-400 hover:bg-teal-400/20 border border-teal-400/20'
-                : 'bg-white/5 text-white/40 border border-white/10 hover:bg-white/10'
+                : 'bg-white/5 text-white/40 border border-white/10 hover:bg-white/5'
             } disabled:opacity-50`}>
             {profile?.is_pro ? <Sparkles size={13} /> : <Lock size={13} />}
             {aiLoading ? 'Expanding...' : 'AI Expand'}

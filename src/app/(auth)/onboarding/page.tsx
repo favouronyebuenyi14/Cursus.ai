@@ -90,7 +90,7 @@ export default function OnboardingPage() {
           </div>
         </div>
       </div>
-      <div className="flex-1 bg-white flex items-center justify-center p-8">
+      <div className="flex-1 bg-[#0A0F1C] flex items-center justify-center p-8">
         <div className="w-full max-w-md">
           <div className="flex gap-2 mb-6">
             {[1, 2, 3].map(s => (
