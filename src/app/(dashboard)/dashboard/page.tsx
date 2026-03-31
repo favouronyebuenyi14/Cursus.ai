@@ -13,6 +13,8 @@ import {
   Calendar,
   Sparkles,
   MoreHorizontal,
+  Bell,
+  Plus,
 } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { formatRelativeTime } from '@/lib/utils'
@@ -70,6 +72,19 @@ export default function DashboardHome() {
 
   return (
     <div className="mx-auto max-w-7xl space-y-6 text-[#2c2f31] md:space-y-8">
+
+      <div className="flex items-center justify-end gap-2 sm:gap-3">
+        <button className="relative flex h-10 w-10 items-center justify-center rounded-full text-slate-500 transition-colors hover:bg-slate-100 hover:text-blue-600">
+          <Bell size={18} />
+          <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-red-500 ring-2 ring-white" />
+        </button>
+        <button
+          onClick={() => router.push('/notes')}
+          className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary transition-all hover:bg-primary hover:text-white"
+        >
+          <Plus size={18} />
+        </button>
+      </div>
 
       {/* Welcome Message & Date */}
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
