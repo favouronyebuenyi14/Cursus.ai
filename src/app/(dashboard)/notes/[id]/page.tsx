@@ -122,6 +122,25 @@ export default function NoteEditorPage() {
     doc.save(`${title || 'note'}.pdf`)
   }
 
+  async function shareNote() {
+    const excerpt = (displayContent || 'No content yet...').slice(0, 280)
+    const payload = `${title || 'Untitled note'}\n\n${excerpt}`
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: title || 'Untitled note',
+          text: payload,
+        })
+        return
+      } catch (error) {
+        if ((error as Error).name === 'AbortError') return
+      }
+    }
+
+    window.open(`https://wa.me/?text=${encodeURIComponent(payload)}`, '_blank', 'noopener,noreferrer')
+  }
+
   const displayContent = view === 'expanded' && expandedContent ? expandedContent : content
 
   return (
@@ -217,7 +236,7 @@ export default function NoteEditorPage() {
               {profile?.is_pro ? <Sparkles size={18} /> : <Lock size={18} />}
             </button>
 
-            <button className="flex h-10 w-10 items-center justify-center rounded-lg text-[#595c5e] transition-colors hover:bg-[#eef1f3] hover:text-[#006094]">
+            <button onClick={shareNote} className="flex h-10 w-10 items-center justify-center rounded-lg text-[#595c5e] transition-colors hover:bg-[#eef1f3] hover:text-[#006094]">
               <Share2 size={18} />
             </button>
           </div>
