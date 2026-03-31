@@ -195,29 +195,29 @@ export default function NoteEditorPage() {
       </aside>
 
       {/* Main Editor */}
-      <main className="md:ml-64 flex-1 flex flex-col h-screen">
+      <main className="flex h-screen flex-1 flex-col md:ml-64">
 
         {/* Top Bar */}
-        <header className="fixed top-0 left-0 right-0 md:left-64 h-16 flex items-center justify-between px-6 md:px-8 z-30 bg-white/80 backdrop-blur-md shadow-sm">
-          <div className="flex items-center gap-4">
-            <span className="text-lg font-black text-[#006094]">Cursus Editor</span>
+        <header className="fixed left-0 right-0 top-0 z-30 flex h-16 items-center justify-between bg-white/80 px-4 shadow-sm backdrop-blur-md sm:px-5 md:left-64 md:px-8">
+          <div className="flex items-center gap-3 md:gap-4">
+            <span className="text-base font-black text-[#006094] sm:text-lg">Cursus Editor</span>
             <div className="hidden md:block h-4 w-[1px] bg-[#abadaf] opacity-20" />
             <span className="hidden md:block text-xs text-[#595c5e] font-medium">
               {saving ? 'Saving...' : saved ? 'Saved' : 'Unsaved'}
             </span>
           </div>
 
-          <div className="flex items-center gap-3">
-            <button onClick={exportPDF} className="flex items-center gap-2 px-4 py-2 bg-[#006094] text-white rounded-lg text-sm font-bold shadow-sm hover:opacity-90 transition-all">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <button onClick={exportPDF} className="flex h-10 items-center gap-2 rounded-lg bg-[#006094] px-3 text-sm font-bold text-white shadow-sm transition-all hover:opacity-90 sm:px-4">
               <Download size={16} />
               <span className="hidden sm:block">Export as PDF</span>
             </button>
 
-            <button onClick={handleExpand} className="p-2 text-[#595c5e] hover:text-[#006094] transition-colors">
+            <button onClick={handleExpand} className="flex h-10 w-10 items-center justify-center rounded-lg text-[#595c5e] transition-colors hover:bg-[#eef1f3] hover:text-[#006094]">
               {profile?.is_pro ? <Sparkles size={18} /> : <Lock size={18} />}
             </button>
 
-            <button className="p-2 text-[#595c5e] hover:text-[#006094] transition-colors">
+            <button className="flex h-10 w-10 items-center justify-center rounded-lg text-[#595c5e] transition-colors hover:bg-[#eef1f3] hover:text-[#006094]">
               <Share2 size={18} />
             </button>
           </div>
@@ -225,8 +225,8 @@ export default function NoteEditorPage() {
 
         {/* Editor Surface */}
         <div className="mt-16 flex flex-1 overflow-hidden">
-          <div className="flex-1 overflow-y-auto bg-[#eef1f3] p-6 md:p-8 flex justify-center">
-            <div className="w-full max-w-4xl bg-white rounded-xl shadow-[0px_10px_40px_rgba(44,47,49,0.04)] min-h-[1228px] p-8 md:p-16 flex flex-col">
+          <div className="flex flex-1 justify-center overflow-y-auto bg-[#eef1f3] p-4 sm:p-5 md:p-8">
+            <div className="flex min-h-[calc(100vh-5.5rem)] w-full flex-col rounded-xl bg-white p-4 shadow-[0px_10px_40px_rgba(44,47,49,0.04)] sm:p-6 md:min-h-[1228px] md:max-w-4xl md:p-12 lg:p-16">
 
               {/* Back */}
               <div className="mb-6">
@@ -236,7 +236,7 @@ export default function NoteEditorPage() {
               </div>
 
               {/* Title */}
-              <input value={title} onChange={e => setTitle(e.target.value)} placeholder="Note title..." className="w-full bg-transparent text-3xl md:text-4xl font-extrabold text-[#2c2f31] placeholder:text-[#595c5e]/40 focus:outline-none mb-8 border-none tracking-tight" />
+              <input value={title} onChange={e => setTitle(e.target.value)} placeholder="Note title..." className="mb-6 w-full border-none bg-transparent text-2xl font-extrabold tracking-tight text-[#2c2f31] placeholder:text-[#595c5e]/40 focus:outline-none sm:text-3xl md:mb-8 md:text-4xl" />
 
               {/* Content */}
               {view === 'raw' ? (
@@ -244,7 +244,7 @@ export default function NoteEditorPage() {
                   value={content}
                   onChange={e => setContent(e.target.value)}
                   placeholder="Start writing your notes here..."
-                  className="w-full bg-transparent text-[#2c2f31] placeholder:text-[#595c5e]/50 focus:outline-none resize-none text-lg leading-relaxed min-h-[70vh]"
+                  className="min-h-[65vh] w-full resize-none bg-transparent text-base leading-relaxed text-[#2c2f31] placeholder:text-[#595c5e]/50 focus:outline-none sm:text-lg md:min-h-[70vh]"
                 />
               ) : (
                 <div className="prose max-w-none">
@@ -262,9 +262,9 @@ export default function NoteEditorPage() {
 
               {/* View Toggle */}
               {expandedContent && (
-                <div className="mt-10 flex bg-[#eef1f3] rounded-lg p-1 text-xs w-fit border border-slate-200">
-                  <button onClick={() => setView('raw')} className={`px-4 py-2 rounded-md font-bold transition-colors ${view === 'raw' ? 'bg-white text-[#2c2f31] shadow-sm' : 'text-[#595c5e] hover:text-[#2c2f31]'}`}>Raw</button>
-                  <button onClick={() => setView('expanded')} className={`px-4 py-2 rounded-md font-bold transition-colors ${view === 'expanded' ? 'bg-white text-[#006094] shadow-sm' : 'text-[#595c5e] hover:text-[#006094]'}`}>AI Expanded</button>
+                <div className="mt-10 flex w-full flex-wrap rounded-lg border border-slate-200 bg-[#eef1f3] p-1 text-xs sm:w-fit">
+                  <button onClick={() => setView('raw')} className={`flex-1 rounded-md px-4 py-2 font-bold transition-colors sm:flex-none ${view === 'raw' ? 'bg-white text-[#2c2f31] shadow-sm' : 'text-[#595c5e] hover:text-[#2c2f31]'}`}>Raw</button>
+                  <button onClick={() => setView('expanded')} className={`flex-1 rounded-md px-4 py-2 font-bold transition-colors sm:flex-none ${view === 'expanded' ? 'bg-white text-[#006094] shadow-sm' : 'text-[#595c5e] hover:text-[#006094]'}`}>AI Expanded</button>
                 </div>
               )}
             </div>

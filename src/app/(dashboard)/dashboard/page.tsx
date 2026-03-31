@@ -69,53 +69,53 @@ export default function DashboardHome() {
   const firstName = profile?.full_name?.split(' ')[0] || 'there'
 
   return (
-    <div className="p-6 md:p-8 max-w-7xl mx-auto space-y-8 bg-[#f5f7f9] min-h-screen text-[#2c2f31]">
+    <div className="mx-auto max-w-7xl space-y-6 text-[#2c2f31] md:space-y-8">
 
       {/* Welcome Message & Date */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
-          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
+          <h2 className="text-2xl font-extrabold tracking-tight sm:text-3xl md:text-4xl">
             Good {getGreeting()}, {firstName} 👋
           </h2>
 
-          <p className="text-[#595c5e] font-medium mt-1">
+          <p className="mt-1 text-sm font-medium text-[#595c5e] md:text-base">
             {profile?.department && profile?.level
               ? `${profile.department} · ${profile.level} · ${profile.university}`
               : 'Ready to tackle your academic goals today?'}
           </p>
         </div>
 
-        <div className="bg-white shadow-sm rounded-xl px-4 py-2 flex items-center gap-3 border border-[#abadaf]/10">
+        <div className="flex w-full items-center gap-3 rounded-xl border border-[#abadaf]/10 bg-white px-4 py-3 shadow-sm sm:w-auto">
           <Calendar size={18} className="text-[#006094]" />
           <span className="text-sm font-semibold">{todayDate}</span>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
 
         {/* Left/Center Column */}
-        <div className="lg:col-span-8 space-y-8">
+        <div className="space-y-6 lg:col-span-8 md:space-y-8">
 
           {/* Quick Actions */}
           <section>
-            <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+            <h3 className="mb-4 flex items-center gap-2 text-lg font-bold">
               <span className="w-1.5 h-6 bg-[#006094] rounded-full" />
               Quick Actions
             </h3>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
               {QUICK_ACTIONS.map((a) => (
                 <button
                   key={a.href}
                   onClick={() => router.push(a.href)}
-                  className="flex flex-col items-center justify-center p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all group border border-[#abadaf]/10"
+                  className="group flex min-h-[132px] flex-col items-center justify-center rounded-xl border border-[#abadaf]/10 bg-white p-4 shadow-sm transition-all hover:shadow-md sm:p-6"
                 >
                   <div
-                    className={`w-12 h-12 rounded-full ${a.bg} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}
+                    className={`mb-3 flex h-12 w-12 items-center justify-center rounded-full ${a.bg} transition-transform group-hover:scale-110`}
                   >
                     <a.icon size={22} className={a.color} />
                   </div>
-                  <span className="text-sm font-bold text-[#2c2f31]">{a.label}</span>
+                  <span className="text-center text-sm font-bold text-[#2c2f31]">{a.label}</span>
                 </button>
               ))}
             </div>
@@ -123,20 +123,20 @@ export default function DashboardHome() {
 
           {/* Academic Progress */}
           <section>
-            <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+            <h3 className="mb-4 flex items-center gap-2 text-lg font-bold">
               <span className="w-1.5 h-6 bg-[#4b5c78] rounded-full" />
               Academic Progress
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6">
 
               {/* Notes */}
-              <div className="bg-[#006094] text-[#ebf3ff] p-6 rounded-xl shadow-sm relative overflow-hidden group">
+              <div className="group relative overflow-hidden rounded-xl bg-[#006094] p-5 text-[#ebf3ff] shadow-sm md:p-6">
                 <div className="relative z-10">
                   <p className="text-xs font-bold uppercase tracking-wider opacity-80 mb-1">
                     Notes Written
                   </p>
-                  <p className="text-4xl font-black">{stats.notes}</p>
+                  <p className="text-3xl font-black sm:text-4xl">{stats.notes}</p>
 
                   <div className="mt-4 h-1 w-full bg-white/20 rounded-full overflow-hidden">
                     <div
@@ -157,12 +157,12 @@ export default function DashboardHome() {
               </div>
 
               {/* Recordings */}
-              <div className="bg-[#4b5c78] text-[#eef2ff] p-6 rounded-xl shadow-sm relative overflow-hidden group">
+              <div className="group relative overflow-hidden rounded-xl bg-[#4b5c78] p-5 text-[#eef2ff] shadow-sm md:p-6">
                 <div className="relative z-10">
                   <p className="text-xs font-bold uppercase tracking-wider opacity-80 mb-1">
                     Recordings Made
                   </p>
-                  <p className="text-4xl font-black">{stats.recordings}</p>
+                  <p className="text-3xl font-black sm:text-4xl">{stats.recordings}</p>
 
                   <div className="mt-4 h-1 w-full bg-white/20 rounded-full overflow-hidden">
                     <div
@@ -183,12 +183,12 @@ export default function DashboardHome() {
               </div>
 
               {/* PDFs */}
-              <div className="bg-white p-6 rounded-xl shadow-sm border border-[#abadaf]/10 relative overflow-hidden group">
+              <div className="group relative overflow-hidden rounded-xl border border-[#abadaf]/10 bg-white p-5 shadow-sm md:p-6">
                 <div className="relative z-10">
                   <p className="text-xs font-bold uppercase tracking-wider text-[#595c5e] mb-1">
                     PDFs Analyzed
                   </p>
-                  <p className="text-4xl font-black text-[#006094]">{stats.documents}</p>
+                  <p className="text-3xl font-black text-[#006094] sm:text-4xl">{stats.documents}</p>
 
                   <div className="mt-4 h-1 w-full bg-[#4eadf4]/30 rounded-full overflow-hidden">
                     <div
@@ -212,8 +212,8 @@ export default function DashboardHome() {
 
           {/* Recent Activity */}
           <section>
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-bold flex items-center gap-2">
+            <div className="mb-4 flex items-center justify-between gap-3">
+              <h3 className="flex items-center gap-2 text-lg font-bold">
                 <span className="w-1.5 h-6 bg-[#006b1b] rounded-full" />
                 Recent Activity
               </h3>
@@ -225,7 +225,7 @@ export default function DashboardHome() {
 
             <div className="space-y-3">
               {recentNotes.length === 0 && recentRecordings.length === 0 ? (
-                <div className="bg-white rounded-xl border border-[#abadaf]/10 p-8 text-center">
+                <div className="rounded-xl border border-[#abadaf]/10 bg-white p-6 text-center md:p-8">
                   <BookOpen size={32} className="text-[#abadaf] mx-auto mb-3" />
                   <p className="text-sm font-bold text-[#2c2f31] mb-1">
                     No activity yet
@@ -235,7 +235,7 @@ export default function DashboardHome() {
                   </p>
                   <button
                     onClick={() => router.push('/notes')}
-                    className="px-4 py-2 bg-[#006094] text-white text-sm font-bold rounded-lg hover:bg-[#005482] transition-colors"
+                    className="h-10 rounded-lg bg-[#006094] px-4 text-sm font-bold text-white transition-colors hover:bg-[#005482]"
                   >
                     Create New Note
                   </button>
@@ -246,15 +246,15 @@ export default function DashboardHome() {
                     <div
                       key={note.id}
                       onClick={() => router.push(`/notes/${note.id}`)}
-                      className="group flex items-center justify-between p-4 bg-white rounded-xl border border-[#abadaf]/5 shadow-sm hover:shadow-md transition-all cursor-pointer"
+                      className="group flex cursor-pointer items-center justify-between gap-3 rounded-xl border border-[#abadaf]/5 bg-white p-4 shadow-sm transition-all hover:shadow-md"
                     >
-                      <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-lg bg-[#4eadf4]/10 flex items-center justify-center">
+                      <div className="flex min-w-0 items-center gap-3 sm:gap-4">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#4eadf4]/10">
                           <BookOpen size={18} className="text-[#006094]" />
                         </div>
 
-                        <div>
-                          <p className="text-sm font-bold text-[#2c2f31]">
+                        <div className="min-w-0">
+                          <p className="truncate text-sm font-bold text-[#2c2f31]">
                             {note.title || 'Untitled note'}
                           </p>
                           <p className="text-xs text-[#595c5e]">
@@ -274,15 +274,15 @@ export default function DashboardHome() {
                     <div
                       key={rec.id}
                       onClick={() => router.push('/recorder')}
-                      className="group flex items-center justify-between p-4 bg-white rounded-xl border border-[#abadaf]/5 shadow-sm hover:shadow-md transition-all cursor-pointer"
+                      className="group flex cursor-pointer items-center justify-between gap-3 rounded-xl border border-[#abadaf]/5 bg-white p-4 shadow-sm transition-all hover:shadow-md"
                     >
-                      <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-lg bg-[#c1d2f3]/20 flex items-center justify-center">
+                      <div className="flex min-w-0 items-center gap-3 sm:gap-4">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#c1d2f3]/20">
                           <Mic size={18} className="text-[#4b5c78]" />
                         </div>
 
-                        <div>
-                          <p className="text-sm font-bold text-[#2c2f31]">
+                        <div className="min-w-0">
+                          <p className="truncate text-sm font-bold text-[#2c2f31]">
                             {rec.title || 'Untitled recording'}
                           </p>
                           <p className="text-xs text-[#595c5e]">
@@ -304,32 +304,32 @@ export default function DashboardHome() {
         </div>
 
         {/* Right Column */}
-        <div className="lg:col-span-4 space-y-6">
+        <div className="space-y-6 lg:col-span-4">
 
           {/* Exam Countdown */}
-          <div className="bg-gradient-to-br from-[#006094] to-[#005482] text-white p-8 rounded-2xl shadow-xl relative overflow-hidden">
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#006094] to-[#005482] p-6 text-white shadow-xl md:p-8">
             <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 bg-white/20 px-3 py-1 rounded-full backdrop-blur-md mb-6">
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/20 px-3 py-1 backdrop-blur-md">
                 <span className="w-2 h-2 bg-[#91f78e] rounded-full animate-pulse" />
                 <span className="text-[10px] font-bold uppercase tracking-widest">
                   Active Countdown
                 </span>
               </div>
 
-              <h4 className="text-xl font-black mb-1 leading-tight">
+              <h4 className="mb-1 text-xl font-black leading-tight">
                 BIO 301 Final Exam
               </h4>
 
-              <p className="text-white/80 text-sm mb-6">
+              <p className="mb-6 text-sm text-white/80">
                 Molecular Biology Advanced Level
               </p>
 
               <div className="flex items-baseline gap-2">
-                <span className="text-6xl font-black tracking-tighter">12</span>
+                <span className="text-5xl font-black tracking-tighter sm:text-6xl">12</span>
                 <span className="text-xl font-bold opacity-70">days left</span>
               </div>
 
-              <button className="w-full mt-8 py-3 bg-white text-[#006094] font-bold rounded-xl shadow-lg hover:bg-slate-50 transition-colors">
+              <button className="mt-8 h-11 w-full rounded-xl bg-white font-bold text-[#006094] shadow-lg transition-colors hover:bg-slate-50 md:h-12">
                 Start Study Prep
               </button>
             </div>
@@ -338,7 +338,7 @@ export default function DashboardHome() {
           </div>
 
           {/* Upcoming Classes */}
-          <div className="bg-[#eef1f3] p-6 rounded-xl space-y-4">
+          <div className="space-y-4 rounded-xl bg-[#eef1f3] p-5 md:p-6">
             <div className="flex items-center justify-between">
               <h4 className="text-sm font-bold text-[#2c2f31] uppercase tracking-wider">
                 Upcoming Classes
@@ -352,7 +352,7 @@ export default function DashboardHome() {
             ].map((item) => (
               <div
                 key={item.day}
-                className="flex gap-4 p-3 bg-white rounded-lg border border-[#abadaf]/5"
+                className="flex gap-3 rounded-lg border border-[#abadaf]/5 bg-white p-3 sm:gap-4"
               >
                 <div className="text-center min-w-[3rem]">
                   <p className="text-xs font-bold text-[#595c5e] uppercase">{item.month}</p>
@@ -366,13 +366,13 @@ export default function DashboardHome() {
               </div>
             ))}
 
-            <button className="w-full py-2 text-sm font-bold text-[#595c5e] bg-white rounded-lg hover:bg-slate-50 transition-colors border border-[#abadaf]/10">
+            <button className="h-10 w-full rounded-lg border border-[#abadaf]/10 bg-white text-sm font-bold text-[#595c5e] transition-colors hover:bg-slate-50">
               Full Calendar
             </button>
           </div>
 
           {/* Study Buddy AI */}
-          <div className="bg-white/40 border border-white p-6 rounded-2xl relative overflow-hidden backdrop-blur-sm">
+          <div className="relative overflow-hidden rounded-2xl border border-white bg-white/40 p-5 backdrop-blur-sm md:p-6">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-sky-400 to-indigo-500 flex items-center justify-center">
                 <Sparkles size={20} className="text-white" />

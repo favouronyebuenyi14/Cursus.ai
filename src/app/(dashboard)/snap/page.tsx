@@ -171,7 +171,7 @@ export default function SnapPage() {
   const canSnap = profile?.is_pro || snapsToday < 5
 
   return (
-    <div className="bg-[#f5f7f9] font-body text-[#2c2f31] antialiased min-h-screen">
+    <div className="min-h-screen bg-[#f5f7f9] font-body text-[#2c2f31] antialiased">
       {/* Sidebar Navigation */}
       <aside className="hidden md:flex h-screen w-64 fixed left-0 top-0 flex-col p-4 border-r border-slate-200 bg-slate-50 z-50">
         <div className="px-2 mb-8">
@@ -277,58 +277,58 @@ export default function SnapPage() {
       </aside>
 
       {/* Main Workspace Canvas */}
-      <main className="md:ml-64 min-h-screen relative flex flex-col">
+      <main className="relative flex min-h-screen flex-col md:ml-64">
         {/* Top Sticky Header */}
-        <header className="sticky top-0 w-full z-40 bg-white/80 backdrop-blur-md px-6 md:px-8 py-4 flex justify-between items-center shadow-sm">
-          <div className="flex items-center gap-4">
-            <h2 className="text-2xl font-bold text-sky-900 tracking-tight">
+        <header className="sticky top-0 z-40 flex items-center justify-between bg-white/80 px-4 py-4 shadow-sm backdrop-blur-md sm:px-5 md:px-8">
+          <div className="flex min-w-0 items-center gap-3 sm:gap-4">
+            <h2 className="text-xl font-bold tracking-tight text-sky-900 sm:text-2xl">
               Snap &amp; Ask
             </h2>
 
-            <div className="h-4 w-px bg-slate-200 mx-2" />
+            <div className="mx-1 hidden h-4 w-px bg-slate-200 sm:block" />
 
-            <div className="flex items-center gap-2 text-[#595c5e]">
+            <div className="hidden items-center gap-2 text-[#595c5e] sm:flex">
               <History size={16} />
               <span className="text-xs font-medium">History</span>
             </div>
           </div>
 
           <div className="flex items-center gap-3">
-            <button className="p-2 rounded-full hover:bg-slate-100 transition-colors">
+            <button className="flex h-10 w-10 items-center justify-center rounded-full transition-colors hover:bg-slate-100">
               <HelpCircle size={20} className="text-slate-600" />
             </button>
 
-            <button className="p-2 rounded-full hover:bg-slate-100 transition-colors">
+            <button className="flex h-10 w-10 items-center justify-center rounded-full transition-colors hover:bg-slate-100">
               <MoreVertical size={20} className="text-slate-600" />
             </button>
           </div>
         </header>
 
         {/* Content Area */}
-        <div className="flex-1 px-6 md:px-12 py-8 max-w-6xl mx-auto w-full">
-          <div className="grid grid-cols-12 gap-8 items-start">
+        <div className="mx-auto flex-1 w-full max-w-6xl px-4 py-6 sm:px-5 md:px-8 md:py-8 lg:px-12">
+          <div className="grid grid-cols-12 items-start gap-6 lg:gap-8">
             {/* Left Column */}
-            <div className="col-span-12 lg:col-span-7 space-y-8">
+            <div className="col-span-12 space-y-6 lg:col-span-7 lg:space-y-8">
               {/* Hero */}
               <section>
-                <h3 className="text-4xl font-extrabold text-[#2c2f31] tracking-tight mb-2">
+                <h3 className="mb-2 text-3xl font-extrabold tracking-tight text-[#2c2f31] sm:text-4xl">
                   Transform images into{' '}
                   <span className="text-[#006094]">insight.</span>
                 </h3>
 
-                <p className="text-[#595c5e] text-lg">
+                <p className="text-base text-[#595c5e] md:text-lg">
                   Upload a screenshot, a photo of your textbook, or handwritten
                   notes for instant academic clarification.
                 </p>
               </section>
 
               {/* Capture/Upload Bento Grid */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <button
                   onClick={() => fileRef.current?.click()}
-                  className="flex flex-col items-center justify-center p-8 bg-white rounded-xl shadow-sm border border-[#abadaf]/10 hover:border-[#006094]/30 transition-all group"
+                  className="group flex min-h-[180px] flex-col items-center justify-center rounded-xl border border-[#abadaf]/10 bg-white p-6 shadow-sm transition-all hover:border-[#006094]/30 sm:p-8"
                 >
-                  <div className="w-14 h-14 rounded-full bg-[#4eadf4]/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#4eadf4]/20 transition-transform group-hover:scale-110">
                     <Camera size={28} className="text-[#006094]" />
                   </div>
                   <span className="font-bold text-[#2c2f31]">Take a Photo</span>
@@ -342,9 +342,9 @@ export default function SnapPage() {
                     fileRef.current?.removeAttribute('capture')
                     fileRef.current?.click()
                   }}
-                  className="flex flex-col items-center justify-center p-8 bg-white rounded-xl shadow-sm border border-[#abadaf]/10 hover:border-[#006094]/30 transition-all group"
+                  className="group flex min-h-[180px] flex-col items-center justify-center rounded-xl border border-[#abadaf]/10 bg-white p-6 shadow-sm transition-all hover:border-[#006094]/30 sm:p-8"
                 >
-                  <div className="w-14 h-14 rounded-full bg-[#c1d2f3]/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#c1d2f3]/20 transition-transform group-hover:scale-110">
                     <Upload size={28} className="text-[#4b5c78]" />
                   </div>
                   <span className="font-bold text-[#2c2f31]">Upload Image</span>
@@ -355,12 +355,12 @@ export default function SnapPage() {
               </div>
 
               {/* Input Area */}
-              <div className="bg-white p-6 rounded-xl shadow-sm space-y-4 border border-[#abadaf]/10">
+              <div className="space-y-4 rounded-xl border border-[#abadaf]/10 bg-white p-4 shadow-sm sm:p-6">
                 <div className="relative">
                   <textarea
                     value={question}
                     onChange={e => setQuestion(e.target.value)}
-                    className="w-full min-h-[120px] p-4 bg-[#eef1f3] border-0 focus:ring-2 focus:ring-[#4eadf4] rounded-lg resize-none text-[#2c2f31] placeholder:text-[#595c5e]/60"
+                    className="min-h-[140px] w-full resize-none rounded-lg border-0 bg-[#eef1f3] p-4 pb-16 text-[#2c2f31] placeholder:text-[#595c5e]/60 focus:ring-2 focus:ring-[#4eadf4]"
                     placeholder="What do you want to know about this snap?"
                   />
 
@@ -368,7 +368,7 @@ export default function SnapPage() {
                     <button
                       onClick={handleAsk}
                       disabled={loading || !question || !canSnap}
-                      className="bg-[#006094] text-white px-5 py-2 rounded-lg font-bold flex items-center gap-2 shadow-md hover:brightness-110 active:scale-95 transition-all disabled:opacity-50"
+                      className="flex h-11 items-center gap-2 rounded-lg bg-[#006094] px-4 text-sm font-bold text-white shadow-md transition-all hover:brightness-110 active:scale-95 disabled:opacity-50 sm:px-5"
                     >
                       <span>{loading ? 'Asking...' : 'Ask AI'}</span>
                       <Sparkles size={16} />
@@ -383,28 +383,28 @@ export default function SnapPage() {
 
                   <button
                     onClick={() => setQuestion('Solve this')}
-                    className="px-4 py-1.5 rounded-full bg-[#c1d2f3] text-[#374862] text-xs font-bold hover:bg-[#4eadf4] hover:text-[#002a44] transition-colors"
+                    className="rounded-full bg-[#c1d2f3] px-4 py-2 text-xs font-bold text-[#374862] transition-colors hover:bg-[#4eadf4] hover:text-[#002a44]"
                   >
                     Solve this
                   </button>
 
                   <button
                     onClick={() => setQuestion('Explain this')}
-                    className="px-4 py-1.5 rounded-full bg-[#c1d2f3] text-[#374862] text-xs font-bold hover:bg-[#4eadf4] hover:text-[#002a44] transition-colors"
+                    className="rounded-full bg-[#c1d2f3] px-4 py-2 text-xs font-bold text-[#374862] transition-colors hover:bg-[#4eadf4] hover:text-[#002a44]"
                   >
                     Explain this
                   </button>
 
                   <button
                     onClick={() => setQuestion('Expand on this')}
-                    className="px-4 py-1.5 rounded-full bg-[#c1d2f3] text-[#374862] text-xs font-bold hover:bg-[#4eadf4] hover:text-[#002a44] transition-colors"
+                    className="rounded-full bg-[#c1d2f3] px-4 py-2 text-xs font-bold text-[#374862] transition-colors hover:bg-[#4eadf4] hover:text-[#002a44]"
                   >
                     Expand on this
                   </button>
 
                   <button
                     onClick={() => setQuestion('Summarize')}
-                    className="px-4 py-1.5 rounded-full bg-[#c1d2f3] text-[#374862] text-xs font-bold hover:bg-[#4eadf4] hover:text-[#002a44] transition-colors"
+                    className="rounded-full bg-[#c1d2f3] px-4 py-2 text-xs font-bold text-[#374862] transition-colors hover:bg-[#4eadf4] hover:text-[#002a44]"
                   >
                     Summarize
                   </button>
@@ -413,7 +413,7 @@ export default function SnapPage() {
             </div>
 
             {/* Right Column */}
-            <div className="col-span-12 lg:col-span-5 flex flex-col h-full space-y-6">
+            <div className="col-span-12 flex h-full flex-col space-y-6 lg:col-span-5">
               {/* Preview Image Placeholder */}
               <div className="relative group">
                 {image ? (
@@ -435,7 +435,7 @@ export default function SnapPage() {
                       <p className="text-[#595c5e] font-medium">
                         No image snapped yet
                       </p>
-                      <p className="text-[11px] text-[#595c5e]/70 mt-1 max-w-[200px]">
+                      <p className="mt-1 max-w-[200px] text-[11px] text-[#595c5e]/70">
                         Snaps will appear here for processing and OCR analysis.
                       </p>
                     </div>
@@ -448,8 +448,8 @@ export default function SnapPage() {
               </div>
 
               {/* AI Response Area */}
-              <div className="flex-1 bg-white rounded-xl shadow-sm border border-[#abadaf]/10 flex flex-col overflow-hidden min-h-[400px]">
-                <div className="px-6 py-4 border-b border-[#e5e9eb] flex items-center justify-between">
+              <div className="flex min-h-[360px] flex-1 flex-col overflow-hidden rounded-xl border border-[#abadaf]/10 bg-white shadow-sm md:min-h-[400px]">
+                <div className="flex items-center justify-between border-b border-[#e5e9eb] px-4 py-4 sm:px-6">
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full bg-[#006b1b] animate-pulse" />
                     <span className="text-xs font-bold uppercase tracking-widest text-[#2c2f31]">
@@ -463,7 +463,7 @@ export default function SnapPage() {
                   </div>
                 </div>
 
-                <div className="p-8 flex flex-col gap-6 overflow-y-auto">
+                <div className="flex flex-col gap-6 overflow-y-auto p-4 sm:p-6 md:p-8">
                   {messages.length === 0 ? (
                     <div className="flex items-start gap-4">
                       <div className="w-8 h-8 rounded-lg bg-[#006094] flex items-center justify-center text-white shrink-0">
@@ -503,7 +503,7 @@ export default function SnapPage() {
                             </div>
                           </>
                         ) : (
-                          <div className="bg-sky-50 p-4 rounded-2xl rounded-tr-none text-sm text-sky-900 max-w-[80%]">
+                          <div className="max-w-[88%] rounded-2xl rounded-tr-none bg-sky-50 p-4 text-sm text-sky-900 sm:max-w-[80%]">
                             {message.content}
                           </div>
                         )}
@@ -582,8 +582,8 @@ export default function SnapPage() {
       )}
 
       {/* Floating Action Element */}
-      <div className="fixed bottom-8 right-8 flex flex-col gap-3 items-end z-50">
-        <button className="p-4 bg-white text-[#006094] rounded-full shadow-xl hover:shadow-2xl active:scale-95 transition-all border border-slate-100">
+      <div className="fixed bottom-24 right-4 z-50 flex flex-col items-end gap-3 sm:right-6 md:bottom-8 md:right-8">
+        <button className="rounded-full border border-slate-100 bg-white p-4 text-[#006094] shadow-xl transition-all hover:shadow-2xl active:scale-95">
           <MessageCircle size={20} />
         </button>
       </div>
