@@ -18,6 +18,7 @@ import {
   X,
   ChevronDown,
 } from 'lucide-react'
+import { getAvatarUrl } from '@/lib/profile-media'
 import { createClient } from '@/lib/supabase/client'
 import type { Course, Profile } from '@/types'
 
@@ -78,6 +79,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   if (!profile) {
     return <div className="p-8 text-red-500">Failed to load profile</div>
   }
+
+  const avatarUrl = getAvatarUrl(supabase, profile.avatar_url)
 
   return (
     <div className="min-h-screen bg-[#f5f7f9] text-slate-900">
@@ -143,8 +146,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
         <div className="mt-6 border-t border-white/10 pt-4">
           <Link href="/profile" className="mb-4 flex items-center gap-3 rounded-xl px-2 py-2 transition-colors hover:bg-[#1a2438]">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#e2e8f0] text-sm font-bold text-[#243247]">
-              {profile.full_name?.[0]?.toUpperCase() || '?'}
+            <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-[#e2e8f0] text-sm font-bold text-[#243247]">
+              {avatarUrl ? (
+                <img src={avatarUrl} alt="Profile avatar" className="h-full w-full object-cover" />
+              ) : (
+                profile.full_name?.[0]?.toUpperCase() || '?'
+              )}
             </div>
             <div>
               <p className="text-sm font-bold text-white">{profile.full_name || 'Student'}</p>
@@ -256,8 +263,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
               <div className="mt-6 border-t border-white/10 px-2 pt-4">
                 <Link href="/profile" onClick={() => setSidebarOpen(false)} className="mb-4 flex items-center gap-3 rounded-xl py-2 transition-colors hover:bg-[#1a2438]">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#e2e8f0] text-sm font-bold text-[#243247]">
-                    {profile.full_name?.[0]?.toUpperCase() || '?'}
+                  <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-[#e2e8f0] text-sm font-bold text-[#243247]">
+                    {avatarUrl ? (
+                      <img src={avatarUrl} alt="Profile avatar" className="h-full w-full object-cover" />
+                    ) : (
+                      profile.full_name?.[0]?.toUpperCase() || '?'
+                    )}
                   </div>
                   <div>
                     <p className="text-sm font-bold text-white">{profile.full_name || 'Student'}</p>

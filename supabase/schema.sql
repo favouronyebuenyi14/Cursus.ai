@@ -24,6 +24,7 @@ create table if not exists profiles (
   id uuid default gen_random_uuid() primary key,
   user_id uuid references auth.users(id) on delete cascade unique not null,
   full_name text,
+  avatar_url text,
   role text default 'university_student',
   university text,
   faculty text,
@@ -198,6 +199,7 @@ create policy "snap_queries_own" on snap_queries
 -- ============================================
 
 -- Create buckets (run via Supabase dashboard or API):
+-- avatars     (public)
 -- recordings  (private)
 -- documents   (private)
 -- exam-materials (private)

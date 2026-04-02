@@ -5,6 +5,7 @@ export interface Profile {
   id: string
   user_id: string
   full_name: string
+  avatar_url: string | null
   role: UserRole
   university: string | null
   faculty: string | null
