@@ -13,13 +13,6 @@ import {
   History,
   HelpCircle,
   MoreVertical,
-  Home,
-  FileText,
-  Mic,
-  BookOpen,
-  School,
-  Search,
-  Settings,
 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
@@ -60,7 +53,6 @@ export default function SnapPage() {
 
       if (prof) setProfile(prof as Profile)
 
-      // Count today's snaps
       const today = new Date()
       today.setHours(0, 0, 0, 0)
 
@@ -74,7 +66,7 @@ export default function SnapPage() {
     }
 
     load()
-  }, [])
+  }, [supabase])
 
   function handleFileSelect(file: File) {
     if (!file.type.startsWith('image/')) return
@@ -171,374 +163,234 @@ export default function SnapPage() {
   const canSnap = profile?.is_pro || snapsToday < 5
 
   return (
-    <div className="min-h-screen bg-[#f5f7f9] font-body text-[#2c2f31] antialiased">
-      {/* Sidebar Navigation */}
-      <aside className="hidden md:flex h-screen w-64 fixed left-0 top-0 flex-col p-4 border-r border-slate-200 bg-slate-50 z-50">
-        <div className="px-2 mb-8">
-          <h1 className="text-lg font-black text-sky-900 tracking-tight">
-            The Atelier
+    <div className="mx-auto w-full max-w-7xl space-y-6 text-[#2c2f31] md:space-y-8">
+      <div className="flex flex-col gap-4 rounded-[28px] bg-white p-5 shadow-sm md:flex-row md:items-center md:justify-between md:p-6">
+        <div>
+          <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#595c5e]">Vision Workspace</p>
+          <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-[#2c2f31] md:text-4xl">
+            Snap &amp; Ask
           </h1>
-          <p className="text-[10px] uppercase tracking-widest text-[#595c5e] font-bold">
-            Academic Workspace
+          <p className="mt-2 max-w-2xl text-sm text-[#595c5e] md:text-base">
+            Upload a screenshot, textbook photo, or handwritten note and let Cursus turn it into guided academic insight.
           </p>
         </div>
 
-        <button
-          onClick={() => fileRef.current?.click()}
-          className="mb-6 flex items-center justify-center gap-2 bg-[#006094] text-white py-3 rounded-lg shadow-sm font-semibold active:scale-95 transition-all duration-200"
-        >
-          <Camera size={18} />
-          <span>New Snap</span>
-        </button>
-
-        <nav className="flex-1 space-y-1">
+        <div className="flex flex-wrap items-center gap-3">
           <button
-            onClick={() => router.push('/dashboard')}
-            className="w-full flex items-center gap-3 text-slate-600 px-4 py-2.5 rounded-lg hover:bg-sky-50 hover:text-sky-700 transition-all duration-300"
+            onClick={() => fileRef.current?.click()}
+            className="inline-flex h-11 items-center gap-2 rounded-xl bg-[#006094] px-5 text-sm font-bold text-white shadow-lg shadow-[#006094]/20 transition-all hover:-translate-y-0.5 hover:shadow-xl"
           >
-            <Home size={18} />
-            <span className="text-sm font-medium">Home</span>
+            <Camera size={16} />
+            New Snap
           </button>
 
-          <button
-            onClick={() => router.push('/notes')}
-            className="w-full flex items-center gap-3 text-slate-600 px-4 py-2.5 rounded-lg hover:bg-sky-50 hover:text-sky-700 transition-all duration-300"
-          >
-            <FileText size={18} />
-            <span className="text-sm font-medium">Notes</span>
-          </button>
-
-          <button
-            onClick={() => router.push('/recorder')}
-            className="w-full flex items-center gap-3 text-slate-600 px-4 py-2.5 rounded-lg hover:bg-sky-50 hover:text-sky-700 transition-all duration-300"
-          >
-            <Mic size={18} />
-            <span className="text-sm font-medium">Recorder</span>
-          </button>
-
-          <button
-            onClick={() => router.push('/library')}
-            className="w-full flex items-center gap-3 text-slate-600 px-4 py-2.5 rounded-lg hover:bg-sky-50 hover:text-sky-700 transition-all duration-300"
-          >
-            <BookOpen size={18} />
-            <span className="text-sm font-medium">Library</span>
-          </button>
-
-          <button
-            onClick={() => router.push('/exam-prep')}
-            className="w-full flex items-center gap-3 text-slate-600 px-4 py-2.5 rounded-lg hover:bg-sky-50 hover:text-sky-700 transition-all duration-300"
-          >
-            <School size={18} />
-            <span className="text-sm font-medium">Exam Prep</span>
-          </button>
-
-          <button
-            onClick={() => router.push('/research')}
-            className="w-full flex items-center gap-3 text-slate-600 px-4 py-2.5 rounded-lg hover:bg-sky-50 hover:text-sky-700 transition-all duration-300"
-          >
-            <Search size={18} />
-            <span className="text-sm font-medium">Research</span>
-          </button>
-
-          {/* ACTIVE STATE */}
-          <button
-            onClick={() => router.push('/snap')}
-            className="w-full flex items-center gap-3 bg-white text-sky-700 rounded-lg shadow-sm font-semibold px-4 py-2.5 transition-all duration-300"
-          >
-            <Camera size={18} className="text-sky-700" />
-            <span className="text-sm">Snap &amp; Ask</span>
-          </button>
-        </nav>
-
-        <div className="mt-auto pt-4 border-t border-slate-200">
-          <button
-            onClick={() => router.push('/settings')}
-            className="w-full flex items-center gap-3 text-slate-600 px-4 py-2.5 rounded-lg hover:bg-sky-50 transition-all duration-300"
-          >
-            <Settings size={18} />
-            <span className="text-sm font-medium">Settings</span>
-          </button>
-
-          <div className="flex items-center gap-3 px-4 py-4 mt-2">
-            <div className="w-8 h-8 rounded-full bg-[#4eadf4] flex items-center justify-center text-[#002a44] font-bold text-xs">
-              {profile?.full_name?.[0] || 'U'}
-            </div>
-
-            <div className="flex flex-col">
-              <span className="text-xs font-bold text-[#2c2f31]">
-                {profile?.full_name || 'User'}
-              </span>
-              <span className="text-[10px] text-[#595c5e]">
-                {profile?.is_pro ? 'Premium Scholar' : 'Free Scholar'}
-              </span>
-            </div>
-          </div>
-        </div>
-      </aside>
-
-      {/* Main Workspace Canvas */}
-      <main className="relative flex min-h-screen flex-col md:ml-64">
-        {/* Top Sticky Header */}
-        <header className="sticky top-0 z-40 flex items-center justify-between bg-white/80 px-4 py-4 shadow-sm backdrop-blur-md sm:px-5 md:px-8">
-          <div className="flex min-w-0 items-center gap-3 sm:gap-4">
-            <h2 className="text-xl font-bold tracking-tight text-sky-900 sm:text-2xl">
-              Snap &amp; Ask
-            </h2>
-
-            <div className="mx-1 hidden h-4 w-px bg-slate-200 sm:block" />
-
-            <div className="hidden items-center gap-2 text-[#595c5e] sm:flex">
+          <div className="flex items-center gap-2">
+            <button className="inline-flex h-11 items-center gap-2 rounded-xl border border-slate-200 px-4 text-sm font-semibold text-[#595c5e] transition-colors hover:bg-slate-50">
               <History size={16} />
-              <span className="text-xs font-medium">History</span>
+              History
+            </button>
+            <button className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 text-[#595c5e] transition-colors hover:bg-slate-50">
+              <HelpCircle size={18} />
+            </button>
+            <button className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 text-[#595c5e] transition-colors hover:bg-slate-50">
+              <MoreVertical size={18} />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 items-start gap-6 xl:grid-cols-[1.2fr_0.8fr] xl:gap-8">
+        <div className="space-y-6">
+          <section className="rounded-[28px] bg-white p-6 shadow-sm md:p-8">
+            <h2 className="text-3xl font-extrabold tracking-tight text-[#2c2f31] sm:text-4xl">
+              Transform images into <span className="text-[#006094]">insight.</span>
+            </h2>
+            <p className="mt-3 max-w-2xl text-base text-[#595c5e] md:text-lg">
+              Upload a screenshot, a photo of your textbook, or handwritten notes for instant academic clarification.
+            </p>
+
+            <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <button
+                onClick={() => fileRef.current?.click()}
+                className="group flex min-h-[180px] flex-col items-center justify-center rounded-2xl border border-[#abadaf]/10 bg-[#fcfdff] p-6 shadow-sm transition-all hover:border-[#006094]/30 sm:p-8"
+              >
+                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#4eadf4]/20 transition-transform group-hover:scale-110">
+                  <Camera size={28} className="text-[#006094]" />
+                </div>
+                <span className="font-bold text-[#2c2f31]">Take a Photo</span>
+                <span className="mt-1 text-xs text-[#595c5e]">Use your webcam</span>
+              </button>
+
+              <button
+                onClick={() => {
+                  fileRef.current?.removeAttribute('capture')
+                  fileRef.current?.click()
+                }}
+                className="group flex min-h-[180px] flex-col items-center justify-center rounded-2xl border border-[#abadaf]/10 bg-[#fcfdff] p-6 shadow-sm transition-all hover:border-[#006094]/30 sm:p-8"
+              >
+                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#c1d2f3]/20 transition-transform group-hover:scale-110">
+                  <Upload size={28} className="text-[#4b5c78]" />
+                </div>
+                <span className="font-bold text-[#2c2f31]">Upload Image</span>
+                <span className="mt-1 text-xs text-[#595c5e]">PNG, JPG, PDF</span>
+              </button>
             </div>
-          </div>
+          </section>
 
-          <div className="flex items-center gap-3">
-            <button className="flex h-10 w-10 items-center justify-center rounded-full transition-colors hover:bg-slate-100">
-              <HelpCircle size={20} className="text-slate-600" />
-            </button>
+          <section className="rounded-[28px] border border-[#abadaf]/10 bg-white p-4 shadow-sm sm:p-6">
+            <div className="relative">
+              <textarea
+                value={question}
+                onChange={e => setQuestion(e.target.value)}
+                className="min-h-[140px] w-full resize-none rounded-2xl border-0 bg-[#eef1f3] p-4 pb-16 text-[#2c2f31] placeholder:text-[#595c5e]/60 focus:ring-2 focus:ring-[#4eadf4]"
+                placeholder="What do you want to know about this snap?"
+              />
 
-            <button className="flex h-10 w-10 items-center justify-center rounded-full transition-colors hover:bg-slate-100">
-              <MoreVertical size={20} className="text-slate-600" />
-            </button>
-          </div>
-        </header>
-
-        {/* Content Area */}
-        <div className="mx-auto flex-1 w-full max-w-6xl px-4 py-6 sm:px-5 md:px-8 md:py-8 lg:px-12">
-          <div className="grid grid-cols-12 items-start gap-6 lg:gap-8">
-            {/* Left Column */}
-            <div className="col-span-12 space-y-6 lg:col-span-7 lg:space-y-8">
-              {/* Hero */}
-              <section>
-                <h3 className="mb-2 text-3xl font-extrabold tracking-tight text-[#2c2f31] sm:text-4xl">
-                  Transform images into{' '}
-                  <span className="text-[#006094]">insight.</span>
-                </h3>
-
-                <p className="text-base text-[#595c5e] md:text-lg">
-                  Upload a screenshot, a photo of your textbook, or handwritten
-                  notes for instant academic clarification.
-                </p>
-              </section>
-
-              {/* Capture/Upload Bento Grid */}
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div className="absolute bottom-3 right-3 flex items-center gap-2">
                 <button
-                  onClick={() => fileRef.current?.click()}
-                  className="group flex min-h-[180px] flex-col items-center justify-center rounded-xl border border-[#abadaf]/10 bg-white p-6 shadow-sm transition-all hover:border-[#006094]/30 sm:p-8"
+                  onClick={handleAsk}
+                  disabled={loading || !question || !canSnap}
+                  className="flex h-11 items-center gap-2 rounded-xl bg-[#006094] px-4 text-sm font-bold text-white shadow-md transition-all hover:brightness-110 active:scale-95 disabled:opacity-50 sm:px-5"
                 >
-                  <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#4eadf4]/20 transition-transform group-hover:scale-110">
-                    <Camera size={28} className="text-[#006094]" />
-                  </div>
-                  <span className="font-bold text-[#2c2f31]">Take a Photo</span>
-                  <span className="text-xs text-[#595c5e] mt-1">
-                    Use your webcam
-                  </span>
+                  <span>{loading ? 'Asking...' : 'Ask AI'}</span>
+                  <Sparkles size={16} />
                 </button>
-
-                <button
-                  onClick={() => {
-                    fileRef.current?.removeAttribute('capture')
-                    fileRef.current?.click()
-                  }}
-                  className="group flex min-h-[180px] flex-col items-center justify-center rounded-xl border border-[#abadaf]/10 bg-white p-6 shadow-sm transition-all hover:border-[#006094]/30 sm:p-8"
-                >
-                  <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#c1d2f3]/20 transition-transform group-hover:scale-110">
-                    <Upload size={28} className="text-[#4b5c78]" />
-                  </div>
-                  <span className="font-bold text-[#2c2f31]">Upload Image</span>
-                  <span className="text-xs text-[#595c5e] mt-1">
-                    PNG, JPG, PDF
-                  </span>
-                </button>
-              </div>
-
-              {/* Input Area */}
-              <div className="space-y-4 rounded-xl border border-[#abadaf]/10 bg-white p-4 shadow-sm sm:p-6">
-                <div className="relative">
-                  <textarea
-                    value={question}
-                    onChange={e => setQuestion(e.target.value)}
-                    className="min-h-[140px] w-full resize-none rounded-lg border-0 bg-[#eef1f3] p-4 pb-16 text-[#2c2f31] placeholder:text-[#595c5e]/60 focus:ring-2 focus:ring-[#4eadf4]"
-                    placeholder="What do you want to know about this snap?"
-                  />
-
-                  <div className="absolute bottom-3 right-3 flex items-center gap-2">
-                    <button
-                      onClick={handleAsk}
-                      disabled={loading || !question || !canSnap}
-                      className="flex h-11 items-center gap-2 rounded-lg bg-[#006094] px-4 text-sm font-bold text-white shadow-md transition-all hover:brightness-110 active:scale-95 disabled:opacity-50 sm:px-5"
-                    >
-                      <span>{loading ? 'Asking...' : 'Ask AI'}</span>
-                      <Sparkles size={16} />
-                    </button>
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap gap-2 pt-2">
-                  <span className="text-xs font-bold text-[#595c5e] uppercase tracking-wider w-full mb-1">
-                    Quick Actions
-                  </span>
-
-                  <button
-                    onClick={() => setQuestion('Solve this')}
-                    className="rounded-full bg-[#c1d2f3] px-4 py-2 text-xs font-bold text-[#374862] transition-colors hover:bg-[#4eadf4] hover:text-[#002a44]"
-                  >
-                    Solve this
-                  </button>
-
-                  <button
-                    onClick={() => setQuestion('Explain this')}
-                    className="rounded-full bg-[#c1d2f3] px-4 py-2 text-xs font-bold text-[#374862] transition-colors hover:bg-[#4eadf4] hover:text-[#002a44]"
-                  >
-                    Explain this
-                  </button>
-
-                  <button
-                    onClick={() => setQuestion('Expand on this')}
-                    className="rounded-full bg-[#c1d2f3] px-4 py-2 text-xs font-bold text-[#374862] transition-colors hover:bg-[#4eadf4] hover:text-[#002a44]"
-                  >
-                    Expand on this
-                  </button>
-
-                  <button
-                    onClick={() => setQuestion('Summarize')}
-                    className="rounded-full bg-[#c1d2f3] px-4 py-2 text-xs font-bold text-[#374862] transition-colors hover:bg-[#4eadf4] hover:text-[#002a44]"
-                  >
-                    Summarize
-                  </button>
-                </div>
               </div>
             </div>
 
-            {/* Right Column */}
-            <div className="col-span-12 flex h-full flex-col space-y-6 lg:col-span-5">
-              {/* Preview Image Placeholder */}
-              <div className="relative group">
-                {image ? (
-                  <div className="aspect-[4/3] bg-[#dfe3e6] rounded-xl overflow-hidden relative flex items-center justify-center border border-[#abadaf]/10">
-                    <img
-                      src={image}
-                      alt="Uploaded snap"
-                      className="w-full h-full object-cover"
-                    />
+            <div className="mt-4 flex flex-wrap gap-2 pt-2">
+              <span className="mb-1 w-full text-xs font-bold uppercase tracking-wider text-[#595c5e]">
+                Quick Actions
+              </span>
+
+              {['Solve this', 'Explain this', 'Expand on this', 'Summarize'].map(prompt => (
+                <button
+                  key={prompt}
+                  onClick={() => setQuestion(prompt)}
+                  className="rounded-full bg-[#c1d2f3] px-4 py-2 text-xs font-bold text-[#374862] transition-colors hover:bg-[#4eadf4] hover:text-[#002a44]"
+                >
+                  {prompt}
+                </button>
+              ))}
+            </div>
+          </section>
+        </div>
+
+        <div className="space-y-6">
+          <div className="relative">
+            {image ? (
+              <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-[28px] border border-[#abadaf]/10 bg-[#dfe3e6]">
+                <img
+                  src={image}
+                  alt="Uploaded snap"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            ) : (
+              <div
+                onDrop={handleDrop}
+                onDragOver={e => e.preventDefault()}
+                className="relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-[28px] border-2 border-dashed border-[#abadaf]/30 bg-[#dfe3e6]"
+              >
+                <div className="flex flex-col items-center p-6 text-center">
+                  <ImageIcon size={52} className="mb-3 text-[#abadaf]" />
+                  <p className="font-medium text-[#595c5e]">No image snapped yet</p>
+                  <p className="mt-1 max-w-[220px] text-[11px] text-[#595c5e]/70">
+                    Snaps will appear here for processing and OCR analysis.
+                  </p>
+                </div>
+              </div>
+            )}
+
+            <div className="absolute -bottom-3 -right-3 flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#006094] shadow-lg transition-transform group-hover:scale-110">
+              <ScanLine size={20} />
+            </div>
+          </div>
+
+          <div className="flex min-h-[360px] flex-1 flex-col overflow-hidden rounded-[28px] border border-[#abadaf]/10 bg-white shadow-sm md:min-h-[400px]">
+            <div className="flex items-center justify-between border-b border-[#e5e9eb] px-4 py-4 sm:px-6">
+              <div className="flex items-center gap-2">
+                <div className="h-2 w-2 rounded-full bg-[#006b1b] animate-pulse" />
+                <span className="text-xs font-bold uppercase tracking-widest text-[#2c2f31]">
+                  AI Workspace
+                </span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <Copy className="h-4 w-4 cursor-pointer text-[#595c5e] hover:text-[#006094]" />
+                <Share2 className="h-4 w-4 cursor-pointer text-[#595c5e] hover:text-[#006094]" />
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-6 overflow-y-auto p-4 sm:p-6 md:p-8">
+              {messages.length === 0 ? (
+                <div className="flex items-start gap-4">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#006094] text-white">
+                    <Sparkles size={16} />
                   </div>
-                ) : (
+
+                  <div className="flex-1 space-y-3">
+                    <div className="h-4 w-3/4 animate-pulse rounded bg-[#eef1f3]" />
+                    <div className="h-4 w-full animate-pulse rounded bg-[#eef1f3]" />
+                    <div className="h-4 w-5/6 animate-pulse rounded bg-[#eef1f3]" />
+                    <div className="pt-2 text-sm italic text-[#595c5e]">
+                      Waiting for your first snap to begin analyzing...
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                messages.map((message, index) => (
                   <div
-                    onDrop={handleDrop}
-                    onDragOver={e => e.preventDefault()}
-                    className="aspect-[4/3] bg-[#dfe3e6] rounded-xl overflow-hidden relative flex items-center justify-center border-2 border-dashed border-[#abadaf]/30"
+                    key={index}
+                    className={`flex items-start gap-4 ${message.role === 'user' ? 'justify-end' : ''}`}
                   >
-                    <div className="text-center p-6 flex flex-col items-center">
-                      <ImageIcon size={52} className="text-[#abadaf] mb-3" />
-                      <p className="text-[#595c5e] font-medium">
-                        No image snapped yet
-                      </p>
-                      <p className="mt-1 max-w-[200px] text-[11px] text-[#595c5e]/70">
-                        Snaps will appear here for processing and OCR analysis.
-                      </p>
-                    </div>
-                  </div>
-                )}
+                    {message.role === 'assistant' ? (
+                      <>
+                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#006094] text-white">
+                          <Sparkles size={16} />
+                        </div>
 
-                <div className="absolute -bottom-3 -right-3 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-[#006094] group-hover:scale-110 transition-transform">
-                  <ScanLine size={20} />
-                </div>
+                        <div className="flex-1 space-y-3">
+                          <div className="whitespace-pre-wrap text-sm leading-relaxed text-[#2c2f31]">
+                            {message.content}
+                            {loading && index === messages.length - 1 ? (
+                              <span className="ml-1 inline-block h-4 w-1.5 animate-pulse rounded-sm bg-[#006094]" />
+                            ) : null}
+                          </div>
+                        </div>
+                      </>
+                    ) : (
+                      <div className="max-w-[88%] rounded-2xl rounded-tr-none bg-sky-50 p-4 text-sm text-sky-900 sm:max-w-[80%]">
+                        {message.content}
+                      </div>
+                    )}
+                  </div>
+                ))
+              )}
+            </div>
+
+            <div className="mt-auto bg-[#eef1f3]/50 p-4">
+              <div className="mb-2 flex items-center justify-between">
+                <span className="text-[10px] font-bold uppercase text-[#595c5e]">
+                  Academic context sync
+                </span>
+                <span className="text-[10px] font-bold text-[#006094]">
+                  {loading ? 'Processing...' : '0%'}
+                </span>
               </div>
 
-              {/* AI Response Area */}
-              <div className="flex min-h-[360px] flex-1 flex-col overflow-hidden rounded-xl border border-[#abadaf]/10 bg-white shadow-sm md:min-h-[400px]">
-                <div className="flex items-center justify-between border-b border-[#e5e9eb] px-4 py-4 sm:px-6">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-[#006b1b] animate-pulse" />
-                    <span className="text-xs font-bold uppercase tracking-widest text-[#2c2f31]">
-                      AI Workspace
-                    </span>
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    <Copy className="w-4 h-4 text-[#595c5e] hover:text-[#006094] cursor-pointer" />
-                    <Share2 className="w-4 h-4 text-[#595c5e] hover:text-[#006094] cursor-pointer" />
-                  </div>
-                </div>
-
-                <div className="flex flex-col gap-6 overflow-y-auto p-4 sm:p-6 md:p-8">
-                  {messages.length === 0 ? (
-                    <div className="flex items-start gap-4">
-                      <div className="w-8 h-8 rounded-lg bg-[#006094] flex items-center justify-center text-white shrink-0">
-                        <Sparkles size={16} />
-                      </div>
-
-                      <div className="space-y-3 flex-1">
-                        <div className="h-4 bg-[#eef1f3] rounded w-3/4 animate-pulse" />
-                        <div className="h-4 bg-[#eef1f3] rounded w-full animate-pulse" />
-                        <div className="h-4 bg-[#eef1f3] rounded w-5/6 animate-pulse" />
-                        <div className="pt-2 text-[#595c5e] italic text-sm">
-                          Waiting for your first snap to begin analyzing...
-                        </div>
-                      </div>
-                    </div>
-                  ) : (
-                    messages.map((message, index) => (
-                      <div
-                        key={index}
-                        className={`flex items-start gap-4 ${
-                          message.role === 'user' ? 'justify-end' : ''
-                        }`}
-                      >
-                        {message.role === 'assistant' ? (
-                          <>
-                            <div className="w-8 h-8 rounded-lg bg-[#006094] flex items-center justify-center text-white shrink-0">
-                              <Sparkles size={16} />
-                            </div>
-
-                            <div className="space-y-3 flex-1">
-                              <div className="text-[#2c2f31] text-sm leading-relaxed whitespace-pre-wrap">
-                                {message.content}
-                                {loading && index === messages.length - 1 && (
-                                  <span className="inline-block w-1.5 h-4 bg-[#006094] animate-pulse ml-1 rounded-sm" />
-                                )}
-                              </div>
-                            </div>
-                          </>
-                        ) : (
-                          <div className="max-w-[88%] rounded-2xl rounded-tr-none bg-sky-50 p-4 text-sm text-sky-900 sm:max-w-[80%]">
-                            {message.content}
-                          </div>
-                        )}
-                      </div>
-                    ))
-                  )}
-                </div>
-
-                {/* Progress indicator placeholder */}
-                <div className="mt-auto p-4 bg-[#eef1f3]/50">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] font-bold text-[#595c5e] uppercase">
-                      Academic context sync
-                    </span>
-
-                    <span className="text-[10px] font-bold text-[#006094]">
-                      {loading ? 'Processing...' : '0%'}
-                    </span>
-                  </div>
-
-                  <div className="h-1.5 w-full bg-[#d9dde0] rounded-full overflow-hidden">
-                    <div
-                      className={`h-full bg-[#006094] transition-all duration-500 ${
-                        loading ? 'w-full animate-pulse' : 'w-0'
-                      }`}
-                    />
-                  </div>
-                </div>
+              <div className="h-1.5 w-full overflow-hidden rounded-full bg-[#d9dde0]">
+                <div
+                  className={`h-full bg-[#006094] transition-all duration-500 ${
+                    loading ? 'w-full animate-pulse' : 'w-0'
+                  }`}
+                />
               </div>
             </div>
           </div>
         </div>
-      </main>
+      </div>
 
-      {/* Hidden file input */}
       <input
         ref={fileRef}
         type="file"
@@ -548,40 +400,38 @@ export default function SnapPage() {
         onChange={e => e.target.files?.[0] && handleFileSelect(e.target.files[0])}
       />
 
-      {/* Pro upgrade modal */}
-      {showProModal && (
+      {showProModal ? (
         <div
-          className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
           onClick={() => setShowProModal(false)}
         >
           <div
-            className="bg-white rounded-2xl p-8 max-w-sm w-full shadow-2xl"
+            className="w-full max-w-sm rounded-2xl bg-white p-8 shadow-2xl"
             onClick={e => e.stopPropagation()}
           >
-            <Camera size={28} className="text-[#006094] mb-4" />
-            <h2 className="text-xl font-bold text-[#2c2f31] mb-2">
+            <Camera size={28} className="mb-4 text-[#006094]" />
+            <h2 className="mb-2 text-xl font-bold text-[#2c2f31]">
               Daily limit reached
             </h2>
-            <p className="text-[#595c5e] text-sm mb-6">
+            <p className="mb-6 text-sm text-[#595c5e]">
               You&apos;ve used your 5 free snaps for today. Upgrade to Pro for
               unlimited Snap & Ask.
             </p>
 
-            <button className="w-full bg-[#006094] text-white font-bold py-3 rounded-xl hover:bg-[#005482] transition-colors mb-3">
-              Upgrade to Pro — ₦800/month
+            <button className="mb-3 w-full rounded-xl bg-[#006094] py-3 font-bold text-white transition-colors hover:bg-[#005482]">
+              Upgrade to Pro â€” â‚¦800/month
             </button>
 
             <button
               onClick={() => setShowProModal(false)}
-              className="w-full py-3 text-[#595c5e] text-sm hover:text-[#2c2f31] transition-colors"
+              className="w-full py-3 text-sm text-[#595c5e] transition-colors hover:text-[#2c2f31]"
             >
               Come back tomorrow
             </button>
           </div>
         </div>
-      )}
+      ) : null}
 
-      {/* Floating Action Element */}
       <div className="fixed bottom-24 right-4 z-50 flex flex-col items-end gap-3 sm:right-6 md:bottom-8 md:right-8">
         <button className="rounded-full border border-slate-100 bg-white p-4 text-[#006094] shadow-xl transition-all hover:shadow-2xl active:scale-95">
           <MessageCircle size={20} />
