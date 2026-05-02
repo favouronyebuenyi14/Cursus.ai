@@ -1,0 +1,46 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  darkMode: ['class'],
+  content: [
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {
+      colors: {
+        primary: '#002147',
+        'on-primary': '#ffffff',
+        'surface': '#f5f7f9',
+        'on-surface': '#2c2f31',
+        'on-surface-variant': '#64748b',
+        'surface-container-low': '#eef1f3',
+        'surface-container-lowest': '#ffffff',
+        'surface-container': '#e5e9eb',
+        'surface-container-high': '#dfe3e6',
+        'surface-container-highest': '#d9dde0',
+        'outline-variant': '#abadaf',
+        'outline': '#747779',
+        'primary-container': '#4eadf4',
+        'on-primary-container': '#002a44',
+        'primary-dim': '#005482',
+        'secondary': '#4b5c78',
+        'on-secondary': '#eef2ff',
+        'secondary-container': '#c1d2f3',
+        'on-secondary-container': '#374862',
+        'tertiary': '#006b1b',
+        'tertiary-container': '#91f78e',
+        'on-tertiary-container': '#005e17',
+        'error': '#b31b25',
+        'error-container': '#fb5151',
+        teal: {
+          DEFAULT: '#4ECCA3',
+          300: '#7EDBB8',
+          400: '#4ECCA3',
+          500: '#3AB88E',
+        },
+      },
+    },
+  },
+  plugins: [],
+}

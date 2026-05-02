@@ -1,0 +1,22 @@
+.env
+.env.local
+.env.*.local
+node_modules/
+.next/
+out/
+public/sw.js
+public/workbox-*.js
+public/worker-*.js
+public/sw.js.map
+public/workbox-*.js.map
+*.log
+.DS_Store
+.vercel
+.env*.local
+
+# Test and Scratch scripts
+test_*.js
+test_*.ts
+test.js
+test.ts
+scratch/
